@@ -11,14 +11,13 @@
 - `json5`  
 - `PyQt5`  
 - `numpy`
-- `numba`
 - `pyuic5.exe`(From PyQt5)  
 - `pyrcc5.exe`(From PyQt5)  
   
 ## 📥安装第三方库  
 打开`cmd`并输入：  
 ```shell  
-python -m pip install json5 pyqt5 numpy numba
+python -m pip install json5 pyqt5 numpy
 ```  
 （注：安装失败可能是因为网络原因或没有将`Python`添加至`PATH`环境变量中）  
 
