@@ -51,7 +51,6 @@ def classify(pathlist,file=None,notempty=False):
                 for path in pathlist: #遍历文件路径列表
                     index+=1
                     print('Moving:'+path)
-                    print(item,index)
                     if type(item[1])==list or tuple: #类型为矩阵
                         type_='.'+path.rsplit('.',1)[1].lower()
                         print(type_,item[1])
@@ -74,6 +73,7 @@ def classify(pathlist,file=None,notempty=False):
                             index-=1
         index=0
         for path in pathlist:
+            print('Moving:'+path)
             #index+=1
             if '.'+path.rsplit('.',1)[1].lower() in Image:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'图片')
