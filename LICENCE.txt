@@ -1,0 +1,6 @@
+﻿欢迎使用FileClassifier v1.0安装向导！
+
+本程序使用Python制作，开源免费，谢谢使用。
+
+EricDing618(GitHub)
+2024.1.29

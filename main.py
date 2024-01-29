@@ -13,6 +13,7 @@ from PyQt5.QtCore import (
     QRect,
     QCoreApplication,
     QMetaObject,
+    QCoreApplication
 )
 
 from PyQt5.QtWidgets import (
@@ -316,6 +317,7 @@ import icon_rc
 if __name__ == "__main__":
     from sys import argv,exit
     from mywidgets import MyWindow,lesshint
+    QCoreApplication.setAttribute(Qt.AA_EnableHighDpiScaling)
     app = QApplication(argv)
     MainWindow = MyWindow()
     lesshint(MainWindow)
