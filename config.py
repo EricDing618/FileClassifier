@@ -61,7 +61,9 @@ Music=[
     '.ape',
     '.flac',
     '.ogg',
-    '.aac'
+    '.aac',
+    '.m4a',
+    '.m4r'
 ]
 Zip=[
     '.zip',

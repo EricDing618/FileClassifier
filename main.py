@@ -74,73 +74,31 @@ def classify(pathlist,file=None,notempty=False):
                             print('ok')
                             pathlist=delete(pathlist,index,axis=0)
                             index-=1
-        index=-1
+        index=0
         for path in pathlist:
-            index+=1
+            #index+=1
             if '.'+path.rsplit('.',1)[1].lower() in Image:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'图片')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             elif '.'+path.rsplit('.',1)[1].lower() in Video:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'视频')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             elif '.'+path.rsplit('.',1)[1].lower() in Music:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'音乐')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             elif '.'+path.rsplit('.',1)[1].lower() in Zip:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'压缩包')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             elif '.'+path.rsplit('.',1)[1].lower() in SourceFile:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'源文件')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             elif '.'+path.rsplit('.',1)[1].lower() in Program:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'二进制文件')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             elif '.'+path.rsplit('.',1)[1].lower() in Text:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'文档')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
             else:
                 newdir=os.path.join(path.rsplit('\\',1)[0],'其它')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                move(path,newdir)
-                print('ok')
-                pathlist=delete(pathlist,index,axis=0)
-                index-=1
+            if Path(newdir).is_dir()==False:
+                makedirs(newdir)
+            move(path,newdir)
+            print('ok')
+            pathlist=delete(pathlist,index,axis=0)
+            #index-=1
         print(pathlist)
 #UI界面
 class Ui_MainWindow(object):
