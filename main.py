@@ -39,12 +39,10 @@ from json5 import load
 from os import getcwd,listdir,makedirs
 import os.path
 from pathlib import Path
-#from numba import njit
 from numpy import array,delete
 from shutil import move
 
 #核心代码
-#@njit #加速用的装饰器，相当于numba的@jit(nopython=True)。
 def classify(pathlist,file=None,notempty=False):
     while pathlist.size:
         if notempty: #字典不为空
@@ -111,15 +109,10 @@ class Ui_MainWindow(object):
             self.listWidget.clear()
             if dirlist != []:
                 n=len(dirlist)
-                '''print()
-                print('Index |',' Name |',' Path')
-                print('_______________________')'''
                 for i in range(n-1):
                     path=os.path.join(self.lineEdit.text(),dirlist[i])
                     if '/' in path:
                         path='\\'.join(path.split('/')) #防止误判
-                    '''print(i,'|',dirlist[i],'|',path) #调试
-                    print('_______________________')'''
                     if Path(path).is_file() or Path(path).is_dir()==False:
                         self.a.append(path)
                         item = QListWidgetItem(None)
@@ -127,10 +120,9 @@ class Ui_MainWindow(object):
                         item.setToolTip(path)
                         self.listWidget.addItem(item)
                         self.listWidget.setCurrentRow(self.listWidget.count()-1)
-            #self.listWidget.addItems(self.a)
             f=load(open('./settings.json',encoding='utf-8'))
             if f:
-                classify(array(self.a),f.items(),True)#list(dict(zip(list(f.keys()),list(f.values()))).items())
+                classify(array(self.a),f.items(),True)
             else:
                 classify(array(self.a))
         except Exception as e:
@@ -144,9 +136,6 @@ class Ui_MainWindow(object):
         if self.dir:
             print('DirPath:'+self.dir)
             self.lineEdit.setText(self.dir)
-            '''choo=QMessageBox.question(None,'提示','是否开始分类？',QMessageBox.Yes|QMessageBox.No)
-            if choo==QMessageBox.Yes:
-                self.start(False)'''
 
     #UI代码
     def setupUi(self, MainWindow):
@@ -308,11 +297,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "FileClassifier"))
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
-        '''self.listWidget.addItem('aaa')
-        item = self.listWidget.item(0)
-        item.setText(_translate("MainWindow", "C:\\a.py"))
-        item = self.listWidget.item(1)
-        item.setText(_translate("MainWindow", "D:\\a.py"))'''
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label_2.setText(_translate("MainWindow", "文件夹路径："))
         self.choose.setText(_translate("MainWindow", "选择"))
