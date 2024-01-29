@@ -1,4 +1,7 @@
 # ✨文件分类器FileClassifier  
+
+![image](./show.jpg)  
+
 ## 👀工具材料
  - Windows10  
  - Python 3.11.0 64-bit  
