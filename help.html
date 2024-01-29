@@ -2958,6 +2958,7 @@ body,
             data-dark-theme="dark"
         >
             <div class="github-markdown-content"><h1 id="文件分类器fileclassifier">✨文件分类器FileClassifier</h1>
+<p><img src="file:///d:\mine\EricStudio\小项目\FileClassifier\show.jpg" alt="image"></p>
 <h2 id="工具材料">👀工具材料</h2>
 <ul>
 <li>Windows10</li>
@@ -2967,27 +2968,55 @@ body,
 <h2 id="所需库包和工具">👏所需库（包）和工具</h2>
 <ul>
 <li><code>os</code></li>
+<li><code>shutil</code></li>
+<li><code>pathlib</code></li>
 <li><code>json5</code></li>
 <li><code>PyQt5</code></li>
+<li><code>numpy</code></li>
 <li><code>pyuic5.exe</code>(From PyQt5)</li>
 <li><code>pyrcc5.exe</code>(From PyQt5)</li>
 </ul>
 <h2 id="安装第三方库">📥安装第三方库</h2>
 <p>打开<code>cmd</code>并输入：</p>
-<pre><code class="language-shell">python -m pip install json5 pyqt5 
+<pre><code class="language-shell">python -m pip install json5 pyqt5 numpy
 </code></pre>
 <p>（注：安装失败可能是因为网络原因或没有将<code>Python</code>添加至<code>PATH</code>环境变量中）</p>
 <h2 id="自定义分类步骤">🎨自定义分类步骤</h2>
 <ol>
-<li>打开<code>settings.json</code>。</li>
-<li>输入格式：<code>{类型:后缀}</code>，如：<pre><code class="language-json5"> <span class="hljs-punctuation">{</span>
+<li>
+<p>打开<code>settings.json</code>。</p>
+</li>
+<li>
+<p>输入格式：<code>{类型:后缀}</code>，如：</p>
+<pre><code class="language-json5"> <span class="hljs-punctuation">{</span>
+     <span class="hljs-comment">//...</span>
      <span class="hljs-attr">&quot;Python Files&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;.py&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;.pyw&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
      <span class="hljs-attr">&quot;C Files&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;.c&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;.h&quot;</span><span class="hljs-punctuation">]</span>
  <span class="hljs-punctuation">}</span>
 </code></pre>
-<strong>注意：一定要记得在后缀前面加上“.”！</strong></li>
-<li>保存并重新运行主文件<code>main.py</code>。</li>
+<p><strong>注意：一定要记得在后缀前面加上“.”！</strong></p>
+</li>
+<li>
+<p>保存并重新运行主文件<code>main.py</code>。</p>
+</li>
 </ol>
+<h2 id="错误解决">💖错误解决</h2>
+<ul>
+<li>“无法分类，原因：...”错误提示
+<ol>
+<li>可能是<code>settings.json</code>配置错误。</li>
+<li>可能是<code>settings.json</code>被误删了。</li>
+<li>若以上两种都排除可以向仓库添加<code>issue</code>。</li>
+</ol>
+</li>
+<li>“无法打开...！”错误提示
+<ol>
+<li>可能是目标文件不存在。</li>
+<li>若以上可能排除可以向仓库添加<code>issue</code>。</li>
+</ol>
+</li>
+<li>其他bug请向仓库添加<code>issue</code>。</li>
+</ul>
 </div>
         </div>
             
