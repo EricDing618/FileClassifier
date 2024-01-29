@@ -15,6 +15,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(540, 430)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icon/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        MainWindow.setWindowIcon(icon)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("QWidget{\n"
 "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0.00568182 rgba(0, 100, 255, 255), stop:0.994318 rgba(255, 0, 171, 255));\n"
@@ -182,6 +185,7 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "FileClassifier"))
         self.close.setText(_translate("MainWindow", "×"))
         self.choose_2.setText(_translate("MainWindow", "开始"))
+import icon_rc
 
 
 if __name__ == "__main__":
