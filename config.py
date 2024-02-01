@@ -141,5 +141,6 @@ Text=[
     '.xls',
     '.xlsx',
     '.pdf',
-    '.csv'
+    '.csv',
+    '.wps'
 ]
