@@ -43,64 +43,71 @@ from os import getcwd,listdir,makedirs
 import os.path
 from pathlib import Path
 from numpy import array,delete
-from shutil import move
+from shutil import move,Error
 
 #核心代码
 def classify(pathlist,file=None,notempty=False):
-    while pathlist.size:
-        if notempty: #字典不为空
-            for item in file: #遍历自定义分类器，file=[(classifier,type),...]
-                index=-1
-                for path in pathlist: #遍历文件路径列表
-                    index+=1
-                    print('Moving:'+path)
-                    if type(item[1])==list or tuple: #类型为矩阵
-                        type_='.'+path.rsplit('.',1)[1].lower()
-                        print(type_,item[1])
-                        if type_ in item[1]: #匹配这一分类
-                            newdir=os.path.join(path.rsplit('\\',1)[0],item[0])
-                            if Path(newdir).is_dir()==False:
-                                makedirs(newdir)
-                            move(path,newdir)
-                            print('ok')
-                            pathlist=delete(pathlist,index,axis=0)
-                            index-=1
-                    else: #类型为字符串
-                        if '.'+path.rsplit('.',1)[1].lower() == item[1]: #匹配这一分类
-                            newdir=os.path.join(path.rsplit('\\',1)[0],item[0])
-                            if Path(newdir).is_dir()==False:
-                                makedirs(newdir)
-                            move(path,newdir)
-                            print('ok')
-                            pathlist=delete(pathlist,index,axis=0)
-                            index-=1
-        index=0
-        for path in pathlist:
-            print('Moving:'+path)
-            #index+=1
-            if '.'+path.rsplit('.',1)[1].lower() in Image:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'图片')
-            elif '.'+path.rsplit('.',1)[1].lower() in Video:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'视频')
-            elif '.'+path.rsplit('.',1)[1].lower() in Music:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'音乐')
-            elif '.'+path.rsplit('.',1)[1].lower() in Zip:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'压缩包')
-            elif '.'+path.rsplit('.',1)[1].lower() in SourceFile:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'源文件')
-            elif '.'+path.rsplit('.',1)[1].lower() in Program:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'二进制文件')
-            elif '.'+path.rsplit('.',1)[1].lower() in Text:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'文档')
-            else:
-                newdir=os.path.join(path.rsplit('\\',1)[0],'其它')
-            if Path(newdir).is_dir()==False:
-                makedirs(newdir)
-            move(path,newdir)
-            print('ok')
-            pathlist=delete(pathlist,index,axis=0)
-            #index-=1
-        print(pathlist)
+    try:
+        while pathlist.size:
+            print(pathlist)
+            if notempty: #字典不为空
+                for item in file: #遍历自定义分类器，file=[(classifier,type),...]
+                    index=-1
+                    for path in pathlist: #遍历文件路径列表
+                        index+=1
+                        print('Moving:'+path)
+                        if type(item[1])==list or tuple: #类型为矩阵
+                            type_='.'+path.rsplit('.',1)[1].lower()
+                            print(type_,item[1])
+                            if type_ in item[1]: #匹配这一分类
+                                newdir=os.path.join(path.rsplit('\\',1)[0],item[0])
+                                if Path(newdir).is_dir()==False:
+                                    makedirs(newdir)
+                                move(path,newdir)
+                                print('ok')
+                                pathlist=delete(pathlist,index,axis=0)
+                                index-=1
+                        else: #类型为字符串
+                            if '.'+path.rsplit('.',1)[1].lower() == item[1]: #匹配这一分类
+                                newdir=os.path.join(path.rsplit('\\',1)[0],item[0])
+                                if Path(newdir).is_dir()==False:
+                                    makedirs(newdir)
+                                move(path,newdir)
+                                print('ok')
+                                pathlist=delete(pathlist,index,axis=0)
+                                index-=1
+            index=0
+            for path in pathlist:
+                print('Moving:'+path)
+                #index+=1
+                if '.'+path.rsplit('.',1)[1].lower() in Image:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'图片')
+                elif '.'+path.rsplit('.',1)[1].lower() in Video:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'视频')
+                elif '.'+path.rsplit('.',1)[1].lower() in Music:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'音乐')
+                elif '.'+path.rsplit('.',1)[1].lower() in Zip:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'压缩包')
+                elif '.'+path.rsplit('.',1)[1].lower() in SourceFile:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'源文件')
+                elif '.'+path.rsplit('.',1)[1].lower() in Program:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'二进制文件')
+                elif '.'+path.rsplit('.',1)[1].lower() in Text:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'文档')
+                else:
+                    newdir=os.path.join(path.rsplit('\\',1)[0],'其它')
+                if Path(newdir).is_dir()==False:
+                    makedirs(newdir)
+                move(path,newdir)
+                print('ok')
+                pathlist=delete(pathlist,index,axis=0)
+                #index-=1
+    except Error:
+        if Path(os.path.join(newdir,path.rsplit('\\',1)[1])).is_file():
+            pass
+        else:
+            raise Exception('未知的报错！')
+        
 #UI界面
 class Ui_MainWindow(object):
 
@@ -116,6 +123,7 @@ class Ui_MainWindow(object):
                     path=os.path.join(self.lineEdit.text(),dirlist[i])
                     if '/' in path:
                         path='\\'.join(path.split('/')) #防止误判
+                    print(path)
                     if Path(path).is_file() or Path(path).is_dir()==False:
                         self.a.append(path)
                         item = QListWidgetItem(None)
@@ -203,10 +211,10 @@ class Ui_MainWindow(object):
         self.lineEdit.setAlignment(Qt.AlignCenter)
         self.lineEdit.setObjectName("lineEdit")
         self.choose = QPushButton(self.centralwidget)
-        self.choose.setGeometry(QRect(380, 128, 75, 23))
+        self.choose.setGeometry(QRect(380, 126, 75, 27))
         font = QFont()
         font.setFamily("Microsoft YaHei")
-        font.setPointSize(15)
+        font.setPointSize(13)
         font.setBold(False)
         font.setWeight(50)
         self.choose.setFont(font)
@@ -278,7 +286,7 @@ class Ui_MainWindow(object):
         self.choose_2.setGeometry(QRect(246, 162, 81, 31))
         font = QFont()
         font.setFamily("Microsoft YaHei")
-        font.setPointSize(15)
+        font.setPointSize(13)
         font.setBold(False)
         font.setWeight(50)
         self.choose_2.setFont(font)
