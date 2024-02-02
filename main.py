@@ -118,8 +118,9 @@ class Ui_MainWindow(object):
             self.a=[]
             self.listWidget.clear()
             if dirlist != []:
-                n=len(dirlist)
-                for i in range(n-1):
+                if 'desktop.ini' in dirlist:
+                    dirlist.remove('desktop.ini')
+                for i in range(len(dirlist)):
                     path=os.path.join(self.lineEdit.text(),dirlist[i])
                     if '/' in path:
                         path='\\'.join(path.split('/')) #防止误判
@@ -131,17 +132,20 @@ class Ui_MainWindow(object):
                         item.setToolTip(path)
                         self.listWidget.addItem(item)
                         self.listWidget.setCurrentRow(self.listWidget.count()-1)
-            f=load(open('./settings.json',encoding='utf-8'))
-            if f:
-                classify(array(self.a),f.items(),True)
-            else:
-                classify(array(self.a))
+                f=load(open('./settings.json',encoding='utf-8'))
+                dirs=array(self.a)
+                if f:
+                    classify(dirs,f.items(),True)
+                else:
+                    classify(dirs)
         except Exception as e:
             print(e)
             QMessageBox.critical(None,'错误',f'无法分类，原因：\n{str(e)}')
         else:
             print('Classify successfully.')
             QMessageBox.information(None,'提示','分类成功！')
+        print(dirs)
+        
     def choosedir(self):
         self.dir=QFileDialog.getExistingDirectory(None,'选择文件夹',getcwd())
         if self.dir:

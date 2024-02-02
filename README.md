@@ -1,6 +1,6 @@
 # ✨文件分类器FileClassifier  
 
-![image](./show.jpg)  
+![image](show.jpg)  
 
 ## 👀工具材料
  - Windows10  
@@ -46,4 +46,6 @@ python -m pip install json5 pyqt5 numpy
 - “无法打开...！”错误提示
   1. 可能是目标文件不存在。
   2. 若以上可能排除可以向仓库添加`issue`。
+- 桌面文件整理不全
+  这是一个正常的“bug”，因为`用户桌面`和`公用桌面`的文件都会显示在电脑桌面上。
 - 其他bug请向仓库添加`issue`。

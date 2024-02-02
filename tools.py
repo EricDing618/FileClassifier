@@ -13,7 +13,7 @@ def about():
 
 def helps():
     if Path(getcwd()+'\\help.html').is_file():
-        open_new_tab('help.html')
+        open_new_tab('README.html')
         print('Help File is open.')
     else:
         QMessageBox.critical(None,'错误','无法打开帮助！')

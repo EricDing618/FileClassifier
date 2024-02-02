@@ -2,7 +2,7 @@
         <html>
         <head>
             <meta charset="UTF-8">
-            <title>&#x1f440;&#x5173;&#x4e8e;&#x672c;&#x4f5c;&#x54c1;</title>
+            <title>&#x2728;&#x6587;&#x4ef6;&#x5206;&#x7c7b;&#x5668;FileClassifier</title>
             <style>
 /* From extension vscode.github */
 /*---------------------------------------------------------------------------------------------
@@ -2957,20 +2957,67 @@ body,
             data-light-theme="light"
             data-dark-theme="dark"
         >
-            <div class="github-markdown-content"><h1 id="关于本作品">👀关于本作品</h1>
-<h2 id="作者">👏作者</h2>
+            <div class="github-markdown-content"><h1 id="文件分类器fileclassifier">✨文件分类器FileClassifier</h1>
+<p><img src="file:///d:\gitclone\FileClassifier\show.jpg" alt="image"></p>
+<h2 id="工具材料">👀工具材料</h2>
 <ul>
-<li>B站：Eric学编程</li>
+<li>Windows10</li>
+<li>Python 3.11.0 64-bit</li>
+<li>Visual Studio Code</li>
 </ul>
-<h2 id="描述">✍描述</h2>
-<p>本作品由<code>Python</code>语言完成，可以用来<strong>整理乱作一团的文件</strong>，更多帮助请见<code>README.md</code>或<code>help.html</code>，也可以看<code>GitHub</code>开源仓库呈现的<code>markdown</code>文档。
-<img src="file:///d:\gitclone\FileClassifier\show.jpg" alt="image"></p>
-<h2 id="参考材料">📖参考材料</h2>
+<h2 id="所需库包和工具">👏所需库（包）和工具</h2>
 <ul>
-<li>《PyQt5从入门到实践》</li>
-<li>《零基础Python从入门到精通》</li>
-<li>CSDN的博客</li>
-<li>知乎的文章</li>
+<li><code>os</code></li>
+<li><code>shutil</code></li>
+<li><code>pathlib</code></li>
+<li><code>json5</code></li>
+<li><code>PyQt5</code></li>
+<li><code>numpy</code></li>
+<li><code>pyuic5.exe</code>(From PyQt5)</li>
+<li><code>pyrcc5.exe</code>(From PyQt5)</li>
+</ul>
+<h2 id="安装第三方库">📥安装第三方库</h2>
+<p>打开<code>cmd</code>并输入：</p>
+<pre><code class="language-shell">python -m pip install json5 pyqt5 numpy
+</code></pre>
+<p>（注：安装失败可能是因为网络原因或没有将<code>Python</code>添加至<code>PATH</code>环境变量中）</p>
+<h2 id="自定义分类步骤">🎨自定义分类步骤</h2>
+<ol>
+<li>
+<p>打开<code>settings.json</code>。</p>
+</li>
+<li>
+<p>输入格式：<code>{类型:后缀}</code>，如：</p>
+<pre><code class="language-json5"> <span class="hljs-punctuation">{</span>
+     <span class="hljs-comment">//...</span>
+     <span class="hljs-attr">&quot;Python Files&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;.py&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;.pyw&quot;</span><span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+     <span class="hljs-attr">&quot;C Files&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-punctuation">[</span><span class="hljs-string">&quot;.c&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-string">&quot;.h&quot;</span><span class="hljs-punctuation">]</span>
+ <span class="hljs-punctuation">}</span>
+</code></pre>
+<p><strong>注意：一定要记得在后缀前面加上“.”！</strong></p>
+</li>
+<li>
+<p>保存并重新运行主文件<code>main.py</code>。</p>
+</li>
+</ol>
+<h2 id="错误解决">💖错误解决</h2>
+<ul>
+<li>“无法分类，原因：...”错误提示
+<ol>
+<li>可能是<code>settings.json</code>配置错误。</li>
+<li>可能是<code>settings.json</code>被误删了。</li>
+<li>若以上两种都排除可以向仓库添加<code>issue</code>。</li>
+</ol>
+</li>
+<li>“无法打开...！”错误提示
+<ol>
+<li>可能是目标文件不存在。</li>
+<li>若以上可能排除可以向仓库添加<code>issue</code>。</li>
+</ol>
+</li>
+<li>桌面文件整理不全
+这是一个正常的“bug”，因为<code>用户桌面</code>和<code>公用桌面</code>的文件都会显示在电脑桌面上。</li>
+<li>其他bug请向仓库添加<code>issue</code>。</li>
 </ul>
 </div>
         </div>
