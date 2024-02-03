@@ -31,18 +31,25 @@ Image=[
 Video=[
     '.mp4',
     '.3gp',
+    '.3gpp',
+    '.vob',
     '.avi',
     '.wmv',
     '.mpeg',
     '.mpg',
     '.mov',
     '.flv',
+    '.ts',
     '.swf',
     '.qsv',
     '.kux',
     '.mpg',
     '.rm',
-    '.ram'
+    '.ram',
+    '.webm',
+    '.asx',
+    '.ogv',
+    '.mkv'
 ]
 Music=[
     '.mp3',
