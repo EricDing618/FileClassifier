@@ -116,7 +116,7 @@ SourceFile=[
     '.htm',
     '.kt',
     '.jsx',
-    '.ts',
+    '.vb',
     '.vbs',
     '.bat',
     '.cmd',
@@ -126,7 +126,14 @@ SourceFile=[
     '.xml',
     '.css',
     '.json',
-    '.jsonc'
+    '.jsonc',
+    '.json5',
+    '.r',
+    '.rb',
+    '.swift',
+    '.cmake',
+    '.perl',
+    '.sql'
 ]
 Program=[
     '.exe',
