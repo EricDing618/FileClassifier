@@ -256,7 +256,7 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "文件夹路径："))
         self.choose.setText(_translate("MainWindow", "选择"))
         self.pushButton.setText(_translate("MainWindow", "关于"))
-        self.label_3.setText(_translate("MainWindow", "v1.0"))
+        self.label_3.setText(_translate("MainWindow", "v1.1"))
         self.pushButton_2.setText(_translate("MainWindow", "帮助"))
         self.label.setText(_translate("MainWindow", "FileClassifier"))
         self.close.setText(_translate("MainWindow", "×"))
