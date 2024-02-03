@@ -1,4 +1,4 @@
-from os import makedirs
+from os import getcwd, listdir, makedirs
 import os.path
 from pathlib import Path
 from shutil import move, Error
@@ -8,18 +8,17 @@ from config import *
 def NameIsBad(string:str) -> bool:
     a=0
     for i in string:
-        if i in ['\\','/',':','*','?','"','<','>','|']: #包含非法字符
+        if i in ['\\','/',':','*','?','"','<','>','|']:
             a=1
             break
     return a
-
 #核心代码
 def classify(patharray, file=None, notempty=False):
     """
-    classify:整个项目的核心函数  
-    patharray:装文件路径的numpy.array()  
-    file:设置自定义分类的文件，默认为./settings.json  
-    notempty:自定义文件是否不为空  
+    classify:整个项目的核心函数
+    patharray:装文件路径的numpy.array()
+    file:设置自定义分类的文件，默认为./settings.json
+    notempty:自定义文件是否不为空
     """
     try:
         print(patharray)
