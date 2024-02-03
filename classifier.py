@@ -28,7 +28,6 @@ def classify(pathlist, file=None, notempty=False):
                                 move(path,newdir) # 使用 move() 函数
                                 print('ok')
                                 pathlist = delete(pathlist,index,axis=0) # 更新列表
-                                #pathlist = delete(pathlist,index,axis=0) # 重新赋值给 pathlist
                                 index-=1
                         else: #类型为字符串
                             if type_ == item[1]: #匹配这一分类
@@ -41,12 +40,10 @@ def classify(pathlist, file=None, notempty=False):
                                     move(path,newdir) # 使用 move() 函数
                                 print('ok')
                                 pathlist = delete(pathlist,index,axis=0) # 更新列表
-                                #pathlist = delete(pathlist,index,axis=0) # 重新赋值给 pathlist
                                 index-=1
             index=0
             for path in pathlist:
                 print('Moving:'+path)
-                #index+=1
                 olddir=path.rsplit('\\',1)[0]
                 name=path.rsplit('\\',1)[1]
                 type_='.'+name.rsplit('.',1)[1].lower()
@@ -74,8 +71,6 @@ def classify(pathlist, file=None, notempty=False):
                     move(path,newdir) # 使用 move() 函数
                 print('ok')
                 pathlist = delete(pathlist,index,axis=0) # 更新列表
-                #pathlist = delete(pathlist,index,axis=0) # 重新赋值给 pathlist
-                #index-=1
     except Error:
         if Path(os.path.join(newdir,name)).is_file():
             pass
