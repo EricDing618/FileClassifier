@@ -39,109 +39,11 @@ from PyQt5.QtGui import (
 from tools import about,helps
 from config import * #默认整理方式
 from json5 import load
-from os import getcwd,listdir,makedirs
+from os import getcwd,listdir
 import os.path
 from pathlib import Path
-from numpy import array,delete
-from shutil import move,Error
-
-#核心代码
-def classify(pathlist,file=None,notempty=False):
-    
-    MessageAll=1
-    donotgo=0
-    while pathlist.size:
-        print(pathlist)
-        if notempty: #字典不为空
-            for item in file: #遍历自定义分类器，file=[(classifier,type),...]
-                index=-1
-                for path in pathlist: #遍历文件路径列表
-                    index+=1
-                    print('Moving:'+path)
-                    type_='.'+path.rsplit('.',1)[1].lower()
-                    if type(item[1])==list or tuple: #类型为矩阵
-                        print(type_,item[1])
-                        if type_ in item[1]: #匹配这一分类
-                            newdir=os.path.join(olddir,item[0])
-                            if Path(newdir).is_dir()==False:
-                                makedirs(newdir)
-                            move(path,newdir)
-                            print('ok')
-                            pathlist=delete(pathlist,index,axis=0)
-                            index-=1
-                    else: #类型为字符串
-                        if '.'+path.rsplit('.',1)[1].lower() == item[1]: #匹配这一分类
-                            newdir=os.path.join(olddir,item[0])
-                            if Path(newdir).is_dir()==False:
-                                makedirs(newdir)
-                            move(path,newdir)
-                            print('ok')
-                            pathlist=delete(pathlist,index,axis=0)
-                            index-=1
-        try:
-            index=0
-            for path in pathlist:
-                print('Moving:'+path)
-                #index+=1
-                olddir=path.rsplit('\\',1)[0]
-                name=path.rsplit('\\',1)[1]
-                type_='.'+name.rsplit('.',1)[1].lower()
-                if type_ in Image:
-                    newdir=os.path.join(olddir,'图片')
-                elif type_ in Video:
-                    newdir=os.path.join(olddir,'视频')
-                elif type_ in Music:
-                    newdir=os.path.join(olddir,'音乐')
-                elif type_ in Zip:
-                    newdir=os.path.join(olddir,'压缩包')
-                elif type_ in SourceFile:
-                    newdir=os.path.join(olddir,'源文件')
-                elif type_ in Program:
-                    newdir=os.path.join(olddir,'二进制文件')
-                elif type_ in Text:
-                    newdir=os.path.join(olddir,'文档')
-                else:
-                    newdir=os.path.join(olddir,'其它')
-                if Path(newdir).is_dir()==False:
-                    makedirs(newdir)
-                #index-=1
-                move(path,newdir)
-        except Error:
-            if Path(os.path.join(newdir,name)).is_file():
-                if MessageAll:
-                    a=QMessageBox(QMessageBox.warning,'警告','目标文件夹下似乎有相同命名的文件，您想替换掉它吗？')
-                    a.setWindowIcon(QIcon('./icon.ico'))
-                    a.setStandardButtons(QMessageBox.Yes|QMessageBox.No|QMessageBox.Ok|QMessageBox.Ignore)
-                    b1 = a.button(QMessageBox.Yes)
-                    b1.setText('替换')
-                    b2 = a.button(QMessageBox.No)
-                    b2.setText('重命名')
-                    b3=a.button(QMessageBox.Ok)
-                    b3.setText('替换全部')
-                    b4=a.button(QMessageBox.Ignore)
-                    b4.setText('命名全部')
-                    if a.clickedButton()==b1:
-                        move(path,newdir)
-                    elif a.clickedButton()==b2:
-                        move(path,os.path.join(newdir,name.rsplit('.',1)[0]+' - 副本'+type_))
-                    elif a.clickedButton()==b3:
-                        move(path,newdir)
-                        MessageAll=0
-                    elif a.clickedButton()==b4:
-                        move(path,os.path.join(newdir,name.rsplit('.',1)[0]+' - 副本'+type_))
-                        MessageAll=0
-                        donotgo=1
-                else:
-                    if donotgo:
-                        move(path,os.path.join(newdir,name.rsplit('.',1)[0]+' - 副本'+type_))
-                    else:
-                        move(path,newdir)
-            else:
-                raise Exception('未知的报错！')
-        
-        finally:
-            print('ok')
-            pathlist=delete(pathlist,index,axis=0)
+from numpy import array
+from classifier import classify
         
 #UI界面
 class Ui_MainWindow(object):
@@ -175,13 +77,11 @@ class Ui_MainWindow(object):
                     classify(dirs)
         except Exception as e:
             print(e)
-            a=QMessageBox(QMessageBox.critical,'错误',f'无法分类，原因：\n{str(e)}')
+            QMessageBox.critical(None,'错误',f'无法分类，原因：\n{str(e)}')
         else:
             print('Classify successfully.')
-            a=QMessageBox(QMessageBox.information,'提示','分类成功！')
-        finally:
-            a.setWindowIcon(QIcon('./icon.ico'))
-            print(dirs)
+            QMessageBox.information(None,'提示','分类成功！')
+        print(dirs)
         
     def choosedir(self):
         self.dir=QFileDialog.getExistingDirectory(None,'选择文件夹',getcwd())
