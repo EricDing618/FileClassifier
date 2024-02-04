@@ -34,33 +34,20 @@ def classify(patharray, file=None, notempty=False):
                         type_='.'+name.rsplit('.',1)[-1] if '.' in name else ''
                         index+=1
                         print('Moving:'+path)
-                        if type(item[1])==list or tuple: #类型为矩阵
+                        if ((type(item[1])==list or type(item[1])==tuple) and type_ in item[1]) or (type(item[1])==str and type_ == item[1]): #匹配这一分类
                             print(type_,item[1])
-                            if type_ in item[1]: #匹配这一分类
-                                newdir=os.path.join(olddir,item[0]) if item[0] != '' or not NameIsBad(item[0]) else os.path.join(olddir,'其它')
-                                if Path(newdir).is_dir()==False:
-                                    makedirs(newdir)
-                                if Path(os.path.join(newdir,name)).is_file():
-                                    move(path,os.path.join(newdir,name.rsplit('.',1)[0]+' - 副本'+type_)) # 使用 move() 函数
-                                else:
-                                    move(path,newdir) # 使用 move() 函数
-                                print('ok')
-                                patharray = delete(patharray,index,axis=0) # 更新列表
-                                index-=1
-                        else: #类型为字符串
-                            if type_ == item[1]: #匹配这一分类
-                                newdir=os.path.join(olddir,item[0]) if item[0] != '' or not NameIsBad(item[0]) else os.path.join(olddir,'其它')
-                                if Path(newdir).is_dir()==False:
-                                    makedirs(newdir)
-                                if Path(os.path.join(newdir,name)).is_file():
-                                    move(path,os.path.join(newdir,name.rsplit('.',1)[0]+' - 副本'+type_)) # 使用 move() 函数
-                                else:
-                                    move(path,newdir) # 使用 move() 函数
-                                print('ok')
-                                patharray = delete(patharray,index,axis=0) # 更新列表
-                                index-=1
+                            newdir=os.path.join(olddir,item[0]) if item[0] != '' or not NameIsBad(item[0]) else os.path.join(olddir,'其它')
+                            if Path(newdir).is_dir()==False:
+                                makedirs(newdir)
+                            if Path(os.path.join(newdir,name)).is_file():
+                                move(path,os.path.join(newdir,name.rsplit('.',1)[0]+' - 副本'+type_)) # 使用 move() 函数
+                            else:
+                                move(path,newdir) # 使用 move() 函数
+                            print('ok')
+                            patharray = delete(patharray,index,axis=0) # 更新列表
+                            index-=1
             
-            #剩下部分
+            #剩余部分
             index=-1
             for path in patharray:
                 print('Moving:'+path)
