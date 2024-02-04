@@ -77,6 +77,8 @@ class Ui_MainWindow(object):
                     classify(dirs,f.items(),True)
                 else:
                     classify(dirs)
+        except FileNotFoundError as e:
+            QMessageBox.critical(None,'错误','文件已损坏或丢失！')
         except Exception as e:
             print(e)
             QMessageBox.critical(None,'错误',f'无法分类，原因：\n{str(e)}')

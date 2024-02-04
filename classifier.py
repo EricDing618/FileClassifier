@@ -1,17 +1,19 @@
-from os import getcwd, listdir, makedirs
+from os import makedirs
 import os.path
 from pathlib import Path
 from shutil import move, Error
 from numpy import delete
 from config import *
 
+#判断名称的合法性
 def NameIsBad(string:str) -> bool:
     a=0
     for i in string:
         if i in ['\\','/',':','*','?','"','<','>','|']:
             a=1
             break
-    return a
+    return bool(a)
+
 #核心代码
 def classify(patharray, file=None, notempty=False):
     """
@@ -35,7 +37,7 @@ def classify(patharray, file=None, notempty=False):
                         if type(item[1])==list or tuple: #类型为矩阵
                             print(type_,item[1])
                             if type_ in item[1]: #匹配这一分类
-                                newdir=os.path.join(olddir,item[0]) if item[0] != '' or NameIsBad(item[0]) else os.path.join(olddir,'其它')
+                                newdir=os.path.join(olddir,item[0]) if item[0] != '' or not NameIsBad(item[0]) else os.path.join(olddir,'其它')
                                 if Path(newdir).is_dir()==False:
                                     makedirs(newdir)
                                 if Path(os.path.join(newdir,name)).is_file():
@@ -47,7 +49,7 @@ def classify(patharray, file=None, notempty=False):
                                 index-=1
                         else: #类型为字符串
                             if type_ == item[1]: #匹配这一分类
-                                newdir=os.path.join(olddir,item[0]) if item[0] != '' or NameIsBad(item[0]) else os.path.join(olddir,'其它')
+                                newdir=os.path.join(olddir,item[0]) if item[0] != '' or not NameIsBad(item[0]) else os.path.join(olddir,'其它')
                                 if Path(newdir).is_dir()==False:
                                     makedirs(newdir)
                                 if Path(os.path.join(newdir,name)).is_file():
@@ -97,3 +99,7 @@ def classify(patharray, file=None, notempty=False):
             pass
         else:
             raise Exception('未知的报错！')
+        
+if __name__=='__main__':
+    print(NameIsBad('aaa'))
+    print(NameIsBad('aaa?'))
