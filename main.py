@@ -44,6 +44,7 @@ import os.path
 from pathlib import Path
 from numpy import array
 from classifier import classify
+from time import time
         
 #UI界面
 class Ui_MainWindow(object):
@@ -71,6 +72,7 @@ class Ui_MainWindow(object):
                         self.listWidget.setCurrentRow(self.listWidget.count()-1)
                 f=load(open('./settings.json',encoding='utf-8'))
                 dirs=array(self.a)
+                timer=time()
                 if f:
                     classify(dirs,f.items(),True)
                 else:
@@ -80,6 +82,7 @@ class Ui_MainWindow(object):
             QMessageBox.critical(None,'错误',f'无法分类，原因：\n{str(e)}')
         else:
             print('Classify successfully.')
+            print('文件整理共用时间：'+str(time()-timer)+'s')
             QMessageBox.information(None,'提示','分类成功！')
         print(dirs)
         

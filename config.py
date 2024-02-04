@@ -136,7 +136,30 @@ SourceFile=[
     '.swift',
     '.cmake',
     '.perl',
-    '.sql'
+    '.sql',
+    '.plsql',
+    '.tsql',
+    '.mysql',
+    '.ora',
+    '.db2',
+    '.syb',
+    '.ifx',
+    '.sqlite',
+    '.rdb',
+    '.pli',
+    '.rpgle',
+    '.abap',
+    '.cob',
+    '.mod',
+    '.def',
+    '.pas',
+    '.adb',
+    '.ads',
+    '.f',
+    '.f90',
+    '.m',
+    '.groovy',
+    '.scala'
 ]
 Program=[
     '.exe',
@@ -146,7 +169,8 @@ Program=[
     '.class',
     '.pyc',
     '.pyo',
-    '.so'
+    '.so',
+    '.apk'
 ]
 Text=[
     '.txt',
