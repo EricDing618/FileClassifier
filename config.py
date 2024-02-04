@@ -54,7 +54,17 @@ Video=array(
         '.asx',
         '.ogv',
         '.mkv',
-        '.m4v'
+        '.m4v',
+        '.asf',
+        '.rmvb',
+        '.mxf',
+        '.mts',
+        '.m2ts',
+        '.hevc',
+        '.r3d',
+        '.braw',
+        '.ari',
+        '.dng'
     ]
 )
 Music=array(
@@ -93,7 +103,28 @@ Zip=array(
         '.bz2',
         '.gz',
         '.tgz',
-        '.z'
+        '.z',
+        '.xz',
+        '.lz',
+        '.lzma',
+        '.ppmd',
+        '.zst',
+        '.lz4',
+        '.paq',
+        '.upx',
+        '.ace',
+        '.chm',
+        '.cpio',
+        '.deb',
+        '.dmg',
+        '.hfs',
+        '.msi',
+        '.nsis',
+        '.rpm',
+        '.sqx',
+        '.warc',
+        '.xar',
+        '.zpaq'
     ]
 )
 SourceFile=array(
@@ -170,7 +201,8 @@ SourceFile=array(
         '.f90',
         '.m',
         '.groovy',
-        '.scala'
+        '.scala',
+        '.gitignore'
     ]
 )
 Program=array(
