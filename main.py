@@ -84,7 +84,6 @@ class Ui_MainWindow(object):
             print('Classify successfully.')
             print('文件整理共用时间：'+str(time()-timer)+'s')
             QMessageBox.information(None,'提示','分类成功！')
-        print(dirs)
         
     def choosedir(self):
         self.dir=QFileDialog.getExistingDirectory(None,'选择文件夹',getcwd())
