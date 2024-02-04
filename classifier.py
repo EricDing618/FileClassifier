@@ -78,7 +78,7 @@ def classify(patharray, file=None, notempty=False):
                 elif type_ in SourceFile:
                     newdir=os.path.join(olddir,'源文件')
                 elif type_ in Program:
-                    newdir=os.path.join(olddir,'二进制文件')
+                    newdir=os.path.join(olddir,'程序')
                 elif type_ in Text:
                     newdir=os.path.join(olddir,'文档')
                 elif type_=='.lnk':
