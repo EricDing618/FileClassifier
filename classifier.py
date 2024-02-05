@@ -27,6 +27,8 @@ def classify(patharray, file=None, notempty=False):
         while patharray.size:
             if notempty: #字典不为空
                 for item in file: #遍历自定义分类器，file=[(classifier,type),...]
+                    if NameIsBad(item[0]):
+                        item[0]='' 
                     index=-1
                     for path in patharray: #遍历文件路径列表
                         olddir=path.rsplit('\\',1)[0]
@@ -36,7 +38,7 @@ def classify(patharray, file=None, notempty=False):
                         print('Moving:'+path)
                         if ((type(item[1])==list or type(item[1])==tuple) and type_ in item[1]) or (type(item[1])==str and type_ == item[1]): #匹配这一分类
                             print(type_,item[1])
-                            newdir=os.path.join(olddir,item[0]) if item[0] != '' or not NameIsBad(item[0]) else os.path.join(olddir,'其它')
+                            newdir=os.path.join(olddir,item[0]) if item[0] != '' else os.path.join(olddir,'其它')
                             if Path(newdir).is_dir()==False:
                                 makedirs(newdir)
                             if Path(os.path.join(newdir,name)).is_file():
