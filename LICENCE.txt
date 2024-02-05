@@ -1,6 +1,8 @@
-﻿欢迎使用FileClassifier v1.0！
+﻿欢迎使用FileClassifier文件分类器！
 
-本程序使用Python制作，开源免费，谢谢使用。
+本程序使用Python制作，开源免费，推广请标明来源，谢谢！
+
+我会根据大家的建议继续优化仓库，也会感谢大家的帮助与建议。
 
 EricDing618(GitHub)
 2024.1.29
