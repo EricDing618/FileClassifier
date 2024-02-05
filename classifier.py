@@ -70,7 +70,7 @@ def classify(patharray, file=None, notempty=False):
                     newdir=os.path.join(olddir,'程序')
                 elif type_ in Text:
                     newdir=os.path.join(olddir,'文档')
-                elif type_=='.lnk':
+                elif type_ in ShortCut:
                     newdir=os.path.join(olddir,'快捷方式')
                 else:
                     newdir=os.path.join(olddir,'其它')

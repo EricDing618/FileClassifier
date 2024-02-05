@@ -249,3 +249,11 @@ Text=array(
         '.wps'
     ]
 )
+ShortCut=array(
+    [
+        '.lnk',
+        '.app',
+        '.desktop',
+        '.url'
+    ]
+)
