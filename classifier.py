@@ -1,3 +1,4 @@
+#导入所需要的库（包）
 from os import makedirs
 import os.path
 from pathlib import Path
@@ -8,14 +9,26 @@ from config import *
 #判断名称的合法性
 def NameIsBad(string:str) -> bool:
     a=0
+    BadWords=[
+            '\\',
+            '/',
+            ':',
+            '*',
+            '?',
+            '"',
+            '<',
+            '>',
+            '|'
+        ]
     for i in string:
-        if i in ['\\','/',':','*','?','"','<','>','|']:
+        if i in BadWords:
             a=1
             break
     return bool(a)
 
 #核心代码
-def classify(patharray, file=None, notempty=False):
+def classify(patharray, file=None, 
+             notempty=False):
     """
     classify:整个项目的核心函数
     patharray:装文件路径的numpy.array()

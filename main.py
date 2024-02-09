@@ -52,40 +52,49 @@ class Ui_MainWindow(object):
     #绑定功能
     def start(self):
         try:
-            dirlist=listdir(self.lineEdit.text())
-            self.a=[]
-            self.listWidget.clear()
-            if dirlist != []:
-                if 'desktop.ini' in dirlist:
-                    dirlist.remove('desktop.ini')
-                for i in range(len(dirlist)):
-                    path=os.path.join(self.lineEdit.text(),dirlist[i])
-                    if '/' in path:
-                        path='\\'.join(path.split('/')) #防止误判
-                    print(path)
-                    if Path(path).is_file() or Path(path).is_dir()==False:
-                        self.a.append(path)
-                        item = QListWidgetItem(None)
-                        item.setText(path)
-                        item.setToolTip(path)
-                        self.listWidget.addItem(item)
-                        self.listWidget.setCurrentRow(self.listWidget.count()-1)
-                f=load(open('./settings.json',encoding='utf-8'))
-                dirs=array(self.a)
-                timer=time()
-                if f:
-                    classify(dirs,f.items(),True)
-                else:
-                    classify(dirs)
+            classifydir=self.lineEdit.text()
+            timer=0
+            if '/' in classifydir:
+                classifydir='\\'.join(classifydir.split('/')) #防止误判
+            if os.path.samefile(classifydir,getcwd()): #拦截以程序本身做实验的操作
+                QMessageBox.critical(None,'错误','请不要整理程序本身的文件夹！')
+            else:
+                dirlist=listdir(classifydir)
+                a=[]
+                self.listWidget.clear()
+                if dirlist != []:
+                    if 'desktop.ini' in dirlist:
+                        dirlist.remove('desktop.ini')
+                    for i in range(len(dirlist)):
+                        path=os.path.join(classifydir,dirlist[i])
+                        '''if '/' in path:
+                            path='\\'.join(path.split('/'))''' 
+                        print(path)
+                        if Path(path).is_file() or Path(path).is_dir()==False:
+                            a.append(path)
+                            item = QListWidgetItem(None)
+                            item.setText(path)
+                            item.setToolTip(path)
+                            self.listWidget.addItem(item)
+                            self.listWidget.setCurrentRow(self.listWidget.count()-1)
+                    f=load(open('./settings.json',encoding='utf-8'))
+                    dirs=array(a)
+                    timer=time()
+                    if f:
+                        classify(dirs,f.items(),True)
+                    else:
+                        classify(dirs)
         except FileNotFoundError as e:
-            QMessageBox.critical(None,'错误','文件已损坏或丢失！')
+            print(e)
+            QMessageBox.critical(None,'错误',str(e).split(": ",1)[-1]+'文件已损坏或丢失！')
         except Exception as e:
             print(e)
             QMessageBox.critical(None,'错误',f'无法分类，原因：\n{str(e)}')
         else:
-            print('Classify successfully.')
-            print('文件整理共用时间：'+str(time()-timer)+'s')
-            QMessageBox.information(None,'提示','分类成功！')
+            if timer: #计时器正常工作
+                print('Classify successfully.')
+                print('文件整理共用时间：'+str(time()-timer)+'s')
+                QMessageBox.information(None,'提示','分类成功！')
         
     def choosedir(self):
         self.dir=QFileDialog.getExistingDirectory(None,'选择文件夹',getcwd())
