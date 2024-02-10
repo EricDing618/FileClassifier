@@ -65,11 +65,11 @@ class Ui_MainWindow(object):
                 if dirlist != []:
                     if 'desktop.ini' in dirlist:
                         dirlist.remove('desktop.ini')
-                    for i in range(len(dirlist)):
+                    FILE_TOTAL_NUMBER=len(dirlist)
+                    for i in range(FILE_TOTAL_NUMBER):
                         path=os.path.join(classifydir,dirlist[i])
                         '''if '/' in path:
                             path='\\'.join(path.split('/'))''' 
-                        print(path)
                         if Path(path).is_file() or Path(path).is_dir()==False:
                             a.append(path)
                             item = QListWidgetItem(None)
@@ -77,6 +77,8 @@ class Ui_MainWindow(object):
                             item.setToolTip(path)
                             self.listWidget.addItem(item)
                             self.listWidget.setCurrentRow(self.listWidget.count()-1)
+                    FILE_TOTAL_NUMBER=len(a)
+                    print(f'共有{FILE_TOTAL_NUMBER}个文件需整理。')
                     f=load(open('./settings.json',encoding='utf-8'))
                     dirs=array(a)
                     timer=time()
@@ -93,8 +95,9 @@ class Ui_MainWindow(object):
         else:
             if timer: #计时器正常工作
                 print('Classify successfully.')
-                print('文件整理共用时间：'+str(time()-timer)+'s')
-                QMessageBox.information(None,'提示','分类成功！')
+                USETIME=str(time()-timer)+'s'
+                print(f'文件整理共用时间：{USETIME}')
+                QMessageBox.information(None,'提示',f'成功分类{FILE_TOTAL_NUMBER}个文件，共用{USETIME}。')
         
     def choosedir(self):
         self.dir=QFileDialog.getExistingDirectory(None,'选择文件夹',getcwd())

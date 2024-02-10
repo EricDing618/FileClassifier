@@ -36,7 +36,7 @@ def classify(patharray, file=None,
     notempty:自定义文件是否不为空
     """
     try:
-        print(patharray)
+        #print(patharray)
         while patharray.size:
             if notempty: #字典不为空
                 for item in file: #遍历自定义分类器，file=[(classifier,type),...]
@@ -48,8 +48,8 @@ def classify(patharray, file=None,
                         name=path.rsplit('\\',1)[1]
                         type_='.'+name.rsplit('.',1)[-1] if '.' in name else ''
                         index+=1
-                        print('Moving:'+path)
                         if ((type(item[1])==list or type(item[1])==tuple) and type_ in item[1]) or (type(item[1])==str and type_ == item[1]): #匹配这一分类
+                            print('Moving:'+path)
                             #print(type_,item[1])
                             newdir=os.path.join(olddir,item[0]) if item[0] != '' else os.path.join(olddir,'其它')
                             if Path(newdir).is_dir()==False:
@@ -95,7 +95,7 @@ def classify(patharray, file=None,
                     move(path,newdir) # 使用 move() 函数
                 print('ok')
                 patharray = delete(patharray,index,axis=0) # 更新列表
-            print(patharray)
+            #print(patharray)
     except Error:
         if Path(os.path.join(newdir,name)).is_file():
             pass
