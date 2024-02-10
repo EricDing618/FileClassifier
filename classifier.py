@@ -50,7 +50,7 @@ def classify(patharray, file=None,
                         index+=1
                         print('Moving:'+path)
                         if ((type(item[1])==list or type(item[1])==tuple) and type_ in item[1]) or (type(item[1])==str and type_ == item[1]): #匹配这一分类
-                            print(type_,item[1])
+                            #print(type_,item[1])
                             newdir=os.path.join(olddir,item[0]) if item[0] != '' else os.path.join(olddir,'其它')
                             if Path(newdir).is_dir()==False:
                                 makedirs(newdir)
