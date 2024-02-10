@@ -12,7 +12,7 @@ def about():
 
 
 def helps():
-    if Path(getcwd()+'\\help.html').is_file():
+    if Path(getcwd()+'\\README.html').is_file():
         open_new_tab('README.html')
         print('Help File is open.')
     else:
