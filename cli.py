@@ -5,7 +5,7 @@
 from os import system,getcwd
 import os.path
 if os.path.isfile(getcwd()+'\\classifier.exe'):
-    system('classifier.exe')
+    system('cli.exe')
 else:
     print('错误：可执行文件不存在！')
 input('按回车键退出本程序...')
