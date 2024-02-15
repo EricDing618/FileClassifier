@@ -24,6 +24,13 @@ python -m pip install json5 pyqt5 numpy
 ```  
 （注：安装失败可能是因为网络原因或没有将`Python`添加至`PATH`环境变量中）  
 
+## 💙运行
+1. 打开`cmd`并`cd`到项目文件夹下。
+2. 运行可执行文件输入：
+  1. 带有控制台的程序：`clirun.exe`或`cli.exe`。
+  2. 不带控制台的程序：`classifier.exe`。
+3. 运行源文件输入：`python main.py`。
+  
 ## 🎨自定义分类步骤  
 1. 打开`settings.json`。  
 2. 输入格式：`{类型:后缀}`，如：  

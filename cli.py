@@ -4,7 +4,7 @@
 """
 from os import system,getcwd
 import os.path
-if os.path.isfile(getcwd()+'\\classifier.exe'):
+if os.path.isfile(getcwd()+'\\cli.exe'):
     system('cli.exe')
 else:
     print('错误：可执行文件不存在！')
