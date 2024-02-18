@@ -41,10 +41,7 @@ python -m pip install json5 pyqt5 numpy
 ## 💙运行
 - 打开程序
 1. 打开`cmd`并`cd`到项目文件夹下。
-2. 运行可执行文件输入：
-   1. 带有控制台的程序：`clirun.exe`或`cli.exe`。
-   2. 不带控制台的程序：`classifier.exe`。
-3. 运行源文件输入：`python main.py`。
+2. 输入：`python main.py`。
 - 开始分类
 1. 点击`选择`按钮或直接在输入框中填入文件夹路径。
 2. 点击`开始`按钮。
