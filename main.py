@@ -31,6 +31,12 @@ from numpy import array
 from classifier import classify
 from time import time
 from mainui import Ui_MainWindow
+
+def LowerAll(array_:list[str]):
+    a=[]
+    for i in range(len(array_)):
+        a.append(array_[i].lower())
+    return a
         
 #UI界面
 class Ui_MainWindow(Ui_MainWindow):
@@ -69,6 +75,8 @@ class Ui_MainWindow(Ui_MainWindow):
                     dirs=array(a)
                     timer=time()
                     if f:
+                        for i in f.keys():
+                            f[i]=LowerAll(f[i])
                         classify(dirs,f.items(),True)
                     else:
                         classify(dirs)

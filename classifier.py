@@ -42,15 +42,16 @@ def classify(patharray, file=None,
                 for item in file: #遍历自定义分类器，file=[(classifier,type),...]
                     if NameIsBad(item[0]):
                         item[0]='' 
+                    classifytype=item[1]
                     index=-1
                     for path in patharray: #遍历文件路径列表
                         olddir=path.rsplit('\\',1)[0]
                         name=path.rsplit('\\',1)[1]
-                        type_='.'+name.rsplit('.',1)[-1] if '.' in name else ''
+                        type_='.'+name.rsplit('.',1)[-1].lower() if '.' in name else ''
                         index+=1
-                        if ((type(item[1])==list or type(item[1])==tuple) and type_ in item[1]) or (type(item[1])==str and type_ == item[1]): #匹配这一分类
+                        if ((type(classifytype)==list or type(classifytype)==tuple) and type_ in classifytype) or (type(classifytype)==str and type_ == classifytype): #匹配这一分类
                             print('Moving:'+path)
-                            #print(type_,item[1])
+                            #print(type_,classifytype)
                             newdir=os.path.join(olddir,item[0]) if item[0] != '' else os.path.join(olddir,'其它')
                             if Path(newdir).is_dir()==False:
                                 makedirs(newdir)
