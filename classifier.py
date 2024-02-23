@@ -69,7 +69,7 @@ def classify(patharray, file=None,
                 print('Moving:'+path)
                 olddir=path.rsplit('\\',1)[0]
                 name=path.rsplit('\\',1)[1]
-                type_='.'+name.rsplit('.',1)[-1] if '.' in name else ''
+                type_='.'+name.rsplit('.',1)[-1].lower() if '.' in name else ''
                 if type_ in Image:
                     newdir=os.path.join(olddir,'图片')
                 elif type_ in Video:
